@@ -4,6 +4,8 @@ import pprint
 
 
 class TournamentTest(unittest.TestCase):
+    is_frozen = True
+
     @classmethod
     def setUpClass(cls):
         cls.all_results = []
@@ -21,18 +23,21 @@ class TournamentTest(unittest.TestCase):
     def tearDown(self):
         print(self.results)
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_tournament1(self):
         tournament = runner_and_tournament.Tournament(90, self.runner1, self.runner3)
         self.results = tournament.start()
         self.all_results.append(self.results)
         self.assertTrue(self.results[2].name, 'Ник')
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_tournament2(self):
         tournament = runner_and_tournament.Tournament(90, self.runner2, self.runner3)
         self.results = tournament.start()
         self.all_results.append(self.results)
         self.assertTrue(self.results[2].name, 'Ник')
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_tournament3(self):
         tournament = runner_and_tournament.Tournament(90, self.runner1, self.runner2, self.runner3)
         self.results = tournament.start()
