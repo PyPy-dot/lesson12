@@ -6,7 +6,8 @@ import pprint
 class TournamentTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.all_results = {}
+        cls.all_results = []
+        cls.results = {}
 
     def setUp(self):
         self.runner1 = runner_and_tournament.Runner('Усэйн', 10)
@@ -17,20 +18,26 @@ class TournamentTest(unittest.TestCase):
     def tearDownClass(cls):
         pprint.pprint(cls.all_results)
 
-    def tournament_test1(self):
+    def tearDown(self):
+        print(self.results)
+
+    def test_tournament1(self):
         tournament = runner_and_tournament.Tournament(90, self.runner1, self.runner3)
-        self.all_results = tournament.start()
-        self.assertTrue(self.all_results[2], 'Ник')
+        self.results = tournament.start()
+        self.all_results.append(self.results)
+        self.assertTrue(self.results[2].name, 'Ник')
 
-    def tournament_test2(self):
+    def test_tournament2(self):
         tournament = runner_and_tournament.Tournament(90, self.runner2, self.runner3)
-        self.all_results = tournament.start()
-        self.assertTrue(self.all_results[2], 'Ник')
+        self.results = tournament.start()
+        self.all_results.append(self.results)
+        self.assertTrue(self.results[2].name, 'Ник')
 
-    def tournament_test3(self):
+    def test_tournament3(self):
         tournament = runner_and_tournament.Tournament(90, self.runner1, self.runner2, self.runner3)
-        self.all_results = tournament.start()
-        self.assertTrue(self.all_results[3], 'Ник')
+        self.results = tournament.start()
+        self.all_results.append(self.results)
+        self.assertTrue(self.results[3].name, 'Ник')
 
 
 if __name__ == '__main__':
