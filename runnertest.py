@@ -25,6 +25,4 @@ class RunnerTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    RunnerTest.test_challenge()
-    RunnerTest.test_run()
-    RunnerTest.test_walk()
+    unittest.main()
