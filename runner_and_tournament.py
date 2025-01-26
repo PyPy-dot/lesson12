@@ -28,6 +28,8 @@ class Tournament:
     def start(self):
         finishers = {}
         place = 1
+        for participant in self.participants:
+            participant.distance = 0
         while self.participants:
             for participant in self.participants:
                 participant.run()
@@ -37,3 +39,18 @@ class Tournament:
                     self.participants.remove(participant)
 
         return finishers
+
+
+if __name__ == '__main__':
+    runner1 = Runner('Усэйн', 10)
+    runner2 = Runner('Андрей', 9)
+    runner3 = Runner('Ник', 3)
+    tournaments = []
+    tournaments.append(Tournament(90, runner1, runner3).start())
+    print(runner1.distance, runner2.distance, runner3.distance)
+    tournaments.append(Tournament(90, runner2, runner3).start())
+    print(runner1.distance, runner2.distance, runner3.distance)
+    tournaments.append(Tournament(90, runner1, runner2, runner3).start())
+    print(runner1.distance, runner2.distance, runner3.distance)
+    print(tournaments)
+
